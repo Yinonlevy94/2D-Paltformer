@@ -1,27 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class GameOver : MonoBehaviour
 {
-    public GameObject gameOverUI; // Reference to the game over UI Panel.
-    public Text gameOverText;     // Reference to the UI Text element.
+    private TextMeshProUGUI textMeshPro; // Reference to the TextMeshProUGUI component
 
     private void Start()
     {
-        gameOverUI.SetActive(false); // Make sure the game over UI is initially inactive.
+        GameObject textObject = new GameObject("CollisionText");
+        textMeshPro = textObject.AddComponent<TextMeshProUGUI>();
+
+        textMeshPro.transform.position = new Vector3(0f, 0f, 0f);
+        textMeshPro.fontSize = 36;
+        textMeshPro.text = "GG, u reached the end!";
+        
+        textObject.transform.SetParent(GameObject.Find("Canvas").transform, false);
+
+        textMeshPro.enabled = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            
-            gameOverUI.SetActive(true);
+            Debug.Log("GG, u reached the end!");
 
             
-            gameOverText.text = "Game Over"; 
+            textMeshPro.enabled = true;
+             Time.timeScale = 0f;
         }
     }
 }
