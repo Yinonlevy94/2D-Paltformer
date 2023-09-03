@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {   
@@ -24,6 +25,13 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector3(0, 7, 0);
             counter = 1;
+        }
+
+        if( rb.transform.position.y < -7){
+             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        
+            SceneManager.LoadScene(currentSceneIndex);
         }
     }
 
