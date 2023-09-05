@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
             counter = 1;
         }
 
-        if( rb.transform.position.y < -7){
+        if( rb.transform.position.y < -12){
              int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     // OnCollisionEnter2D is called when a collision occurs.
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Reset the counter when any collision occurs.
+       
         counter = 0;
     }
 }
